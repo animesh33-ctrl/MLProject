@@ -6,7 +6,7 @@ import os
 import sys
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
-from ..logger import logging
+from src.logger import logging
 from src.exception import CustomException
 
 @dataclass
