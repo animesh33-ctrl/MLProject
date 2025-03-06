@@ -6,9 +6,10 @@ import os
 import sys
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
-from ..logger import logging
+from src.logger import logging
 from src.exception import CustomException
-
+from src.Components.data_transformation import DataTransformer
+from src.Components.model_trainer import ModelTrainer
 @dataclass
 class DataIngestionConfig:
     logging.info("Data Ingestion Config Class Invoked")
@@ -44,3 +45,11 @@ class DataIngestion:
 if __name__ == "__main__":
     obj = DataIngestion()
     train_path,test_path = obj.initiate_data_ingestion()
+
+    obj2 = DataTransformer()
+    train_arr,test_arr,_ = obj2.initiate_data_transformer(train_path=train_path,test_path=test_path)
+
+    obj3 = ModelTrainer()
+    r2_score,model_name = obj3.initiate_model_train(train_arr=train_arr,test_arr=test_arr)
+    print(r2_score)
+    print(model_name)
